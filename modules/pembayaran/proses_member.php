@@ -20,6 +20,17 @@ $is_kolektif = ($member['tipe_pembayaran'] == 'Kolektif');
 $months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 $nama_bulan = $months[$bulan-1];
 
+// Handle Hapus/Cancel Pembayaran
+if (isset($_GET['delete_bayar'])) {
+    $del_id = (int)$_GET['delete_bayar'];
+    if (mysqli_query($conn, "DELETE FROM pembayaran_member WHERE id=$del_id AND member_id=$id")) {
+        set_flash_message('success', 'Pembayaran berhasil dibatalkan dan dihapus.');
+    } else {
+        set_flash_message('error', 'Gagal membatalkan pembayaran.');
+    }
+    redirect("/modules/pembayaran/proses_member.php?id=$id&bulan=$bulan&tahun=$tahun");
+}
+
 // Handle Pembayaran
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['proses_bayar'])) {
     $detail_id = isset($_POST['detail_id']) && $_POST['detail_id'] != '' ? (int)$_POST['detail_id'] : 'NULL';
@@ -143,7 +154,10 @@ while($r = mysqli_fetch_assoc($q_d)) $details[] = $r;
                                 <i class="fas fa-check text-success me-2"></i> <strong><?= date('d M Y', strtotime($h['tanggal_bayar'])) ?></strong><br>
                                 <span class="text-muted ms-4"><?= $h['metode_bayar'] ?> <?= $h['keterangan'] ? "({$h['keterangan']})" : "" ?></span>
                             </div>
-                            <span class="fw-bold text-success">+ <?= format_rupiah($h['jumlah_bayar']) ?></span>
+                            <div>
+                                <span class="fw-bold text-success me-3">+ <?= format_rupiah($h['jumlah_bayar']) ?></span>
+                                <a href="?id=<?= $id ?>&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>&delete_bayar=<?= $h['id'] ?>" class="text-danger" onclick="return confirm('Batalkan pembayaran ini?')" title="Hapus"><i class="fas fa-trash"></i></a>
+                            </div>
                         </li>
                         <?php endwhile; ?>
                         <li class="list-group-item px-0 d-flex justify-content-between bg-light mt-2 rounded p-2">
@@ -193,8 +207,10 @@ while($r = mysqli_fetch_assoc($q_d)) $details[] = $r;
                                               <?php 
                                               $c_master = mysqli_query($conn, "SELECT * FROM pembayaran_member WHERE member_id=$id AND member_detail_id IS NULL AND bulan=$bulan AND tahun=$tahun");
                                               if(mysqli_num_rows($c_master)>0): 
+                                                $mst = mysqli_fetch_assoc($c_master);
                                               ?>
                                                 <div class="alert alert-success">Sudah dibayar! Lunas.</div>
+                                                <a href="?id=<?= $id ?>&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>&delete_bayar=<?= $mst['id'] ?>" class="btn btn-danger w-100 mt-2" onclick="return confirm('Batal pembayaran?')"><i class="fas fa-trash me-1"></i> Batalkan Pembayaran</a>
                                               <?php else: ?>
                                               <input type="hidden" name="proses_bayar" value="1">
                                               <input type="hidden" name="detail_id" value="">
@@ -286,6 +302,22 @@ while($r = mysqli_fetch_assoc($q_d)) $details[] = $r;
                                                 </div>
                                               </div>
                                             </div>
+                                        <?php endif; ?>
+
+                                        <!-- History & Delete Button -->
+                                        <?php 
+                                        $h_det = mysqli_query($conn, "SELECT * FROM pembayaran_member WHERE member_detail_id=$d_id AND bulan=$bulan AND tahun=$tahun ORDER BY id ASC");
+                                        if(mysqli_num_rows($h_det) > 0): 
+                                        ?>
+                                        <div class="mt-2 text-muted small bg-light p-2 rounded border">
+                                            <div class="mb-1 text-uppercase fw-bold" style="font-size: 0.70rem;">Histori Bayar:</div>
+                                            <?php while($hd = mysqli_fetch_assoc($h_det)): ?>
+                                                <div class="d-flex justify-content-between align-items-center mb-1 pb-1 border-bottom">
+                                                    <span><?= date('d/m/y', strtotime($hd['tanggal_bayar'])) ?> - <span class="fw-bold text-success"><?= format_rupiah($hd['jumlah_bayar']) ?></span></span>
+                                                    <a href="?id=<?= $id ?>&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>&delete_bayar=<?= $hd['id'] ?>" class="text-danger ms-2" title="Batalkan Transaksi" onclick="return confirm('Batalkan pembayaran ini?')"><i class="fas fa-trash"></i></a>
+                                                </div>
+                                            <?php endwhile; ?>
+                                        </div>
                                         <?php endif; ?>
                                     </td>
                                 </tr>

@@ -160,6 +160,13 @@ $q_personil = mysqli_query($conn, "SELECT * FROM member_detail WHERE member_id =
                                     <?php endif; ?>
                                 </td>
                                 <td>
+                                    <?php if(!isset($row['status']) || $row['status'] == 'Aktif'): ?>
+                                        <span class="badge bg-success">Aktif</span>
+                                    <?php else: ?>
+                                        <span class="badge bg-secondary">Tidak Aktif</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
                                     <?php 
                                         $nama_p = htmlspecialchars($row['nama_personil'], ENT_QUOTES);
                                         $confirm_msg = "Nonaktifkan {$nama_p}? Histori iurannya tetap tersimpan dan tidak akan hilang.";
@@ -178,7 +185,7 @@ $q_personil = mysqli_query($conn, "SELECT * FROM member_detail WHERE member_id =
                                 </td>
                             </tr>
                             <?php endwhile; else: ?>
-                            <tr><td colspan="5" class="text-center py-4 text-muted">Belum ada personil atau detail kendaraan.</td></tr>
+                            <tr><td colspan="7" class="text-center py-4 text-muted">Belum ada personil atau detail kendaraan.</td></tr>
                             <?php endif; ?>
                         </tbody>
                     </table>
