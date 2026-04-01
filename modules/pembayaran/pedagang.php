@@ -20,7 +20,7 @@ if (isset($_GET['delete_bayar'])) {
     mysqli_query($conn, "DELETE FROM pembayaran_pedagang WHERE id = $del_id");
     set_flash_message('success', 'Data pembayaran berhasil dihapus.');
     $back = isset($_GET['from_tanggal']) ? "tanggal={$_GET['from_tanggal']}&kategori=$kategori_filter" : "bulan=$bulan&tahun=$tahun&kategori=$kategori_filter";
-    redirect("/pjr_parking/modules/pembayaran/pedagang.php?$back");
+    redirect("/modules/pembayaran/pedagang.php?$back");
 }
 
 // Handle Process Payment
@@ -41,9 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bayar_pedagang'])) {
         set_flash_message('error', 'Gagal memproses pembayaran!');
     }
     if($is_daily) {
-        redirect("/pjr_parking/modules/pembayaran/pedagang.php?tanggal=$tanggal&kategori=$kategori_filter");
+        redirect("/modules/pembayaran/pedagang.php?tanggal=$tanggal&kategori=$kategori_filter");
     } else {
-        redirect("/pjr_parking/modules/pembayaran/pedagang.php?bulan=$bulan&tahun=$tahun&kategori=$kategori_filter");
+        redirect("/modules/pembayaran/pedagang.php?bulan=$bulan&tahun=$tahun&kategori=$kategori_filter");
     }
 }
 

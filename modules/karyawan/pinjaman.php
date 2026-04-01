@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             set_flash_message('success', 'Pinjaman dibatalkan dan pengeluaran terkait telah dihapus.');
         }
     }
-    redirect('/pjr_parking/modules/karyawan/pinjaman.php');
+    redirect('/modules/karyawan/pinjaman.php');
 }
 
 $wc_karyawan = $is_super ? "1=1" : "k.cabang_id = $cabang_id";
@@ -155,7 +155,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
                         </div>
                         <?php if($f_kar > 0 || $f_bln > 0): ?>
                         <div class="col-md-2 mb-2">
-                            <a href="/pjr_parking/modules/karyawan/pinjaman.php" class="btn btn-sm btn-light w-100">Reset</a>
+                            <a href="/modules/karyawan/pinjaman.php" class="btn btn-sm btn-light w-100">Reset</a>
                         </div>
                         <?php endif; ?>
                     </form>

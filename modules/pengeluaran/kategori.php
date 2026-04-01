@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_kategori'])) {
     } else {
         set_flash_message('error', 'Gagal menambahkan kategori.');
     }
-    redirect('/pjr_parking/modules/pengeluaran/kategori.php');
+    redirect('/modules/pengeluaran/kategori.php');
 }
 
 // Handle Delete Kategori
@@ -21,7 +21,7 @@ if (isset($_GET['del'])) {
     $del = (int)$_GET['del'];
     mysqli_query($conn, "DELETE FROM kategori_pengeluaran WHERE id = $del");
     set_flash_message('success', 'Kategori pengeluaran dan seluruh riwayatnya berhasil dihapus!');
-    redirect('/pjr_parking/modules/pengeluaran/kategori.php');
+    redirect('/modules/pengeluaran/kategori.php');
 }
 
 $q_kategori = mysqli_query($conn, "SELECT * FROM kategori_pengeluaran ORDER BY nama_kategori ASC");
@@ -32,7 +32,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Kategori Pengeluaran</h4>
-    <a href="/pjr_parking/modules/pengeluaran/index.php" class="btn btn-secondary shadow-sm">
+    <a href="/modules/pengeluaran/index.php" class="btn btn-secondary shadow-sm">
         <i class="fas fa-arrow-left me-1"></i> Kembali ke Pengeluaran
     </a>
 </div>

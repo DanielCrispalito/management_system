@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_pengeluaran'])) {
     if($stmt->execute()) set_flash_message('success', 'Data pengeluaran berhasil disimpan.');
     else set_flash_message('error', 'Gagal menyimpan pengeluaran!');
     
-    redirect('/pjr_parking/modules/pengeluaran/index.php');
+    redirect('/modules/pengeluaran/index.php');
 }
 
 // Handle Delete
@@ -59,7 +59,7 @@ if (isset($_GET['delete'])) {
         mysqli_query($conn, "DELETE FROM pengeluaran WHERE id=$id AND cabang_id=$cabang_id");
     }
     set_flash_message('success', 'Data pengeluaran dihapus.' . $msg_extra);
-    redirect('/pjr_parking/modules/pengeluaran/index.php');
+    redirect('/modules/pengeluaran/index.php');
 }
 
 // Fetch Data
@@ -84,7 +84,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Data Pengeluaran Operasional</h4>
-    <a href="/pjr_parking/modules/pengeluaran/kategori.php" class="btn btn-outline-danger"><i class="fas fa-cog"></i> Kelola Kategori Pengeluaran</a>
+    <a href="/modules/pengeluaran/kategori.php" class="btn btn-outline-danger"><i class="fas fa-cog"></i> Kelola Kategori Pengeluaran</a>
 </div>
 
 <?php display_flash_message(); ?>

@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_pedagang'])) {
     $stmt->bind_param("issdi", $cabang_id, $nama, $kategori, $nominal, $jatuh_tempo);
     if($stmt->execute()) set_flash_message('success', 'Data Pedagang ditambahkan.');
     else set_flash_message('error', 'Gagal menambahkan Data.');
-    redirect('/pjr_parking/modules/pedagang/index.php');
+    redirect('/modules/pedagang/index.php');
 }
 
 // Handle Toggle Status
@@ -27,7 +27,7 @@ if (isset($_GET['toggle_status']) && isset($_GET['to'])) {
     $up_q = $is_super ? "UPDATE pedagang SET status='$to' WHERE id=$id" : "UPDATE pedagang SET status='$to' WHERE id=$id AND cabang_id=$cabang_id";
     mysqli_query($conn, $up_q);
     set_flash_message('success', 'Status pedagang direkam menjadi ' . $to . '.');
-    redirect('/pjr_parking/modules/pedagang/index.php');
+    redirect('/modules/pedagang/index.php');
 }
 
 // Handle Delete
@@ -36,7 +36,7 @@ if (isset($_GET['delete'])) {
     $del = $is_super ? "DELETE FROM pedagang WHERE id=$id" : "DELETE FROM pedagang WHERE id=$id AND cabang_id=$cabang_id";
     mysqli_query($conn, $del);
     set_flash_message('success', 'Pedagang dihapus permanen.');
-    redirect('/pjr_parking/modules/pedagang/index.php');
+    redirect('/modules/pedagang/index.php');
 }
 
 $filter_kategori = isset($_GET['filter_kat']) ? sanitize($conn, $_GET['filter_kat']) : '';
@@ -78,7 +78,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
             <div class="d-flex gap-2">
                 <button type="submit" class="btn btn-warning fw-bold px-4"><i class="fas fa-filter me-2"></i>Filter</button>
                 <?php if($filter_kategori || $filter_status): ?>
-                <a href="/pjr_parking/modules/pedagang/index.php" class="btn btn-outline-secondary">Reset</a>
+                <a href="/modules/pedagang/index.php" class="btn btn-outline-secondary">Reset</a>
                 <?php endif; ?>
             </div>
         </form>

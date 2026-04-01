@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../config/database.php';
 check_role(['Admin', 'HRD']);
 
 if (!isset($_GET['id'])) {
-    redirect('/pjr_parking/modules/karyawan/index.php');
+    redirect('/modules/karyawan/index.php');
 }
 
 $id = (int)$_GET['id'];
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("sssssssssddddi", $nik, $nama, $divisi, $jabatan, $tanggal_masuk, $status, $alamat, $no_hp, $email, $gaji_pokok, $t_jabatan, $t_makan, $t_transport, $id);
         if ($stmt->execute()) {
             set_flash_message('success', 'Data karyawan berhasil diperbarui.');
-            redirect('/pjr_parking/modules/karyawan/index.php');
+            redirect('/modules/karyawan/index.php');
         } else {
             set_flash_message('error', 'Gagal memperbarui data: ' . mysqli_error($conn));
         }
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $query = mysqli_query($conn, "SELECT * FROM karyawan WHERE id = $id");
 if (mysqli_num_rows($query) == 0) {
-    redirect('/pjr_parking/modules/karyawan/index.php');
+    redirect('/modules/karyawan/index.php');
 }
 $data = mysqli_fetch_assoc($query);
 
@@ -54,7 +54,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Edit Data Karyawan</h4>
-    <a href="/pjr_parking/modules/karyawan/index.php" class="btn btn-secondary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
+    <a href="/modules/karyawan/index.php" class="btn btn-secondary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
 </div>
 
 <?php display_flash_message(); ?>

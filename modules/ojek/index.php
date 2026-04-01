@@ -14,14 +14,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_ojek'])) {
     $stmt->bind_param("ssss", $tipe, $id_driver, $nama_driver, $kendaraan);
     if($stmt->execute()) set_flash_message('success', 'Driver Ojek Online ditambahkan.');
     else set_flash_message('error', 'Gagal menambahkan Data.');
-    redirect('/pjr_parking/modules/ojek/index.php');
+    redirect('/modules/ojek/index.php');
 }
 
 if (isset($_GET['delete'])) {
     $id = (int)$_GET['delete'];
     mysqli_query($conn, "DELETE FROM ojek_online WHERE id=$id");
     set_flash_message('success', 'Driver dihapus.');
-    redirect('/pjr_parking/modules/ojek/index.php');
+    redirect('/modules/ojek/index.php');
 }
 
 $query = mysqli_query($conn, "SELECT * FROM ojek_online ORDER BY id DESC");

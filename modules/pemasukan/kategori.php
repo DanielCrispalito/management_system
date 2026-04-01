@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_kategori'])) {
     $stmt->bind_param("s", $nama);
     $stmt->execute();
     set_flash_message('success', 'Kategori ditambahkan.');
-    redirect('/pjr_parking/modules/pemasukan/kategori.php');
+    redirect('/modules/pemasukan/kategori.php');
 }
 
 // Handle Add Subkategori
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_subkategori'])) {
     $stmt->bind_param("is", $id_kat, $nama_sub);
     $stmt->execute();
     set_flash_message('success', 'Subkategori ditambahkan.');
-    redirect('/pjr_parking/modules/pemasukan/kategori.php');
+    redirect('/modules/pemasukan/kategori.php');
 }
 
 // Handle Delete Kategori
@@ -30,7 +30,7 @@ if (isset($_GET['del'])) {
     $del = (int)$_GET['del'];
     mysqli_query($conn, "DELETE FROM kategori WHERE id = $del");
     set_flash_message('success', 'Kategori dan riwayat transaksinya berhasil dihapus!');
-    redirect('/pjr_parking/modules/pemasukan/kategori.php');
+    redirect('/modules/pemasukan/kategori.php');
 }
 
 // Handle Delete Subkategori
@@ -38,7 +38,7 @@ if (isset($_GET['del_sub'])) {
     $del = (int)$_GET['del_sub'];
     mysqli_query($conn, "DELETE FROM subkategori WHERE id = $del");
     set_flash_message('success', 'Subkategori dan riwayat transaksinya berhasil dihapus!');
-    redirect('/pjr_parking/modules/pemasukan/kategori.php');
+    redirect('/modules/pemasukan/kategori.php');
 }
 
 $q_kategori = mysqli_query($conn, "SELECT * FROM kategori ORDER BY id DESC");

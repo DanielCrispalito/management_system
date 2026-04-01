@@ -338,3 +338,4 @@ INSERT INTO `users` (`id`, `nama`, `username`, `password`, `role`, `cabang_id`) 
 
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
+g

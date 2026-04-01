@@ -15,7 +15,7 @@ if (isset($_GET['delete_bayar'])) {
     $del_id = (int)$_GET['delete_bayar'];
     mysqli_query($conn, "DELETE FROM pembayaran_ruko WHERE id = $del_id");
     set_flash_message('success', 'Data pembayaran ruko dihapus.');
-    redirect("/pjr_parking/modules/pembayaran/ruko.php?bulan=$bulan&tahun=$tahun");
+    redirect("/modules/pembayaran/ruko.php?bulan=$bulan&tahun=$tahun");
 }
 
 // Handle Process Payment
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bayar_ruko'])) {
     } else {
         set_flash_message('error', 'Gagal memproses pembayaran!');
     }
-    redirect("/pjr_parking/modules/pembayaran/ruko.php?bulan=$bulan&tahun=$tahun");
+    redirect("/modules/pembayaran/ruko.php?bulan=$bulan&tahun=$tahun");
 }
 
 // Fetch Data Ruko along with their payment status for selected month & year

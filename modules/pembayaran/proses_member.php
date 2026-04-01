@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../config/database.php';
 check_role(['Admin', 'Bendahara']);
 
 if (!isset($_GET['id']) || !isset($_GET['bulan']) || !isset($_GET['tahun'])) {
-    redirect('/pjr_parking/modules/pembayaran/member.php');
+    redirect('/modules/pembayaran/member.php');
 }
 
 $id = (int)$_GET['id'];
@@ -13,7 +13,7 @@ $bulan = (int)$_GET['bulan'];
 $tahun = (int)$_GET['tahun'];
 
 $q_m = mysqli_query($conn, "SELECT * FROM member WHERE id = $id");
-if (mysqli_num_rows($q_m) == 0) redirect('/pjr_parking/modules/pembayaran/member.php');
+if (mysqli_num_rows($q_m) == 0) redirect('/modules/pembayaran/member.php');
 $member = mysqli_fetch_assoc($q_m);
 $is_kolektif = ($member['tipe_pembayaran'] == 'Kolektif');
 
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['proses_bayar'])) {
     } else {
         set_flash_message('error', 'Gagal memproses pembayaran: ' . mysqli_error($conn));
     }
-    redirect("/pjr_parking/modules/pembayaran/proses_member.php?id=$id&bulan=$bulan&tahun=$tahun");
+    redirect("/modules/pembayaran/proses_member.php?id=$id&bulan=$bulan&tahun=$tahun");
 }
 
 require_once __DIR__ . '/../../layouts/header.php';
@@ -50,7 +50,7 @@ while($r = mysqli_fetch_assoc($q_d)) $details[] = $r;
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Proses Pembayaran Member</h4>
-    <a href="/pjr_parking/modules/pembayaran/member.php?bulan=<?= $bulan ?>&tahun=<?= $tahun ?>" class="btn btn-secondary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
+    <a href="/modules/pembayaran/member.php?bulan=<?= $bulan ?>&tahun=<?= $tahun ?>" class="btn btn-secondary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
 </div>
 
 <?php display_flash_message(); ?>

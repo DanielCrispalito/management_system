@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         $member_id = $conn->insert_id;
         set_flash_message('success', 'Data member berhasil ditambahkan. Silahkan tambahkan detail personil jika diperlukan.');
-        redirect("/pjr_parking/modules/member/detail.php?id=$member_id");
+        redirect("/modules/member/detail.php?id=$member_id");
     } else {
         set_flash_message('error', 'Gagal menambahkan member.');
     }
@@ -31,7 +31,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Tambah Member Baru</h4>
-    <a href="/pjr_parking/modules/member/index.php" class="btn btn-secondary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
+    <a href="/modules/member/index.php" class="btn btn-secondary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
 </div>
 
 <?php display_flash_message(); ?>

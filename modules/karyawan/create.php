@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("isssssssssdddd", $cabang_id, $nik, $nama, $divisi, $jabatan, $tanggal_masuk, $status, $alamat, $no_hp, $email, $gaji_pokok, $t_jabatan, $t_makan, $t_transport);
         if ($stmt->execute()) {
             set_flash_message('success', 'Data karyawan berhasil ditambahkan.');
-            redirect('/pjr_parking/modules/karyawan/index.php');
+            redirect('/modules/karyawan/index.php');
         } else {
             set_flash_message('error', 'Gagal menambahkan data: ' . mysqli_error($conn));
         }
@@ -44,7 +44,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Tambah Data Karyawan</h4>
-    <a href="/pjr_parking/modules/karyawan/index.php" class="btn btn-secondary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
+    <a href="/modules/karyawan/index.php" class="btn btn-secondary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali</a>
 </div>
 
 <?php display_flash_message(); ?>

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_lain'])) {
     $stmt->bind_param("isids", $cabang_id, $tanggal, $subkategori_id, $nominal, $keterangan);
     if($stmt->execute()) set_flash_message('success', 'Data Pendapatan Lainnnya disimpan.');
     else set_flash_message('error', 'Gagal menyimpan!');
-    redirect('/pjr_parking/modules/pemasukan/lain.php');
+    redirect('/modules/pemasukan/lain.php');
 }
 
 // Handle Delete
@@ -27,7 +27,7 @@ if (isset($_GET['delete'])) {
     $del = $is_super ? "DELETE FROM pendapatan_lain WHERE id=$id" : "DELETE FROM pendapatan_lain WHERE id=$id AND cabang_id=$cabang_id";
     mysqli_query($conn, $del);
     set_flash_message('success', 'Data dihapus.');
-    redirect('/pjr_parking/modules/pemasukan/lain.php');
+    redirect('/modules/pemasukan/lain.php');
 }
 
 $filter_kategori = isset($_GET['filter_kategori']) ? (int)$_GET['filter_kategori'] : '';
@@ -56,7 +56,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Pendapatan Lain-Lain</h4>
-    <a href="/pjr_parking/modules/pemasukan/kategori.php" class="btn btn-outline-primary"><i class="fas fa-cog"></i> Kelola Kategori Pendapatan</a>
+    <a href="/modules/pemasukan/kategori.php" class="btn btn-outline-primary"><i class="fas fa-cog"></i> Kelola Kategori Pendapatan</a>
 </div>
 
 <?php display_flash_message(); ?>

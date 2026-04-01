@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../config/database.php';
 check_role(['Admin', 'HRD']);
 
 if (!isset($_GET['id'])) {
-    redirect('/pjr_parking/modules/member/index.php');
+    redirect('/modules/member/index.php');
 }
 
 $id = (int)$_GET['id'];
@@ -13,7 +13,7 @@ $id = (int)$_GET['id'];
 // Get Member Info
 $q_member = mysqli_query($conn, "SELECT * FROM member WHERE id = $id");
 if (mysqli_num_rows($q_member) == 0) {
-    redirect('/pjr_parking/modules/member/index.php');
+    redirect('/modules/member/index.php');
 }
 $member = mysqli_fetch_assoc($q_member);
 
@@ -23,7 +23,7 @@ if (isset($_GET['toggle_personil']) && isset($_GET['status_to'])) {
     $to = ($_GET['status_to'] === 'Aktif') ? 'Aktif' : 'Tidak Aktif';
     mysqli_query($conn, "UPDATE member_detail SET status='$to' WHERE id=$dp_id AND member_id=$id");
     set_flash_message('success', 'Status personil diubah menjadi: ' . $to);
-    redirect("/pjr_parking/modules/member/detail.php?id=$id");
+    redirect("/modules/member/detail.php?id=$id");
 }
 
 // Handle Delete Personil (Permanent - kept for cleanup purposes)
@@ -31,7 +31,7 @@ if (isset($_GET['delete_personil'])) {
     $dp_id = (int)$_GET['delete_personil'];
     mysqli_query($conn, "DELETE FROM member_detail WHERE id = $dp_id AND member_id = $id");
     set_flash_message('success', 'Data personil dihapus permanen.');
-    redirect("/pjr_parking/modules/member/detail.php?id=$id");
+    redirect("/modules/member/detail.php?id=$id");
 }
 
 // Handle Add Personil
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_personil'])) {
     } else {
         set_flash_message('error', 'Gagal menambahkan personil.');
     }
-    redirect("/pjr_parking/modules/member/detail.php?id=$id");
+    redirect("/modules/member/detail.php?id=$id");
 }
 
 require_once __DIR__ . '/../../layouts/header.php';
@@ -59,7 +59,7 @@ $q_personil = mysqli_query($conn, "SELECT * FROM member_detail WHERE member_id =
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Detail Personil Member</h4>
-    <a href="/pjr_parking/modules/member/index.php" class="btn btn-secondary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Member</a>
+    <a href="/modules/member/index.php" class="btn btn-secondary shadow-sm"><i class="fas fa-arrow-left"></i> Kembali ke Daftar Member</a>
 </div>
 
 <?php display_flash_message(); ?>

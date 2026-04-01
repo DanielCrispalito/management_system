@@ -154,7 +154,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
                             ?>
                         </td>
                         <td class="text-end pe-4">
-                            <a href="/pjr_parking/modules/pembayaran/proses_member.php?id=<?= $row['id'] ?>&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>" class="btn btn-sm <?= $is_paid ? 'btn-outline-secondary' : 'btn-primary' ?> px-3 fw-bold rounded-pill">
+                            <a href="/modules/pembayaran/proses_member.php?id=<?= $row['id'] ?>&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>" class="btn btn-sm <?= $is_paid ? 'btn-outline-secondary' : 'btn-primary' ?> px-3 fw-bold rounded-pill">
                                 Kelola Pembayaran <i class="fas fa-arrow-right ms-1"></i>
                             </a>
                         </td>

@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_parkir'])) {
         if($stmt->execute()) set_flash_message('success', 'Data Pendapatan Parkir disimpan.');
         else set_flash_message('error', 'Gagal menyimpan!');
     }
-    redirect('/pjr_parking/modules/pemasukan/parkir.php');
+    redirect('/modules/pemasukan/parkir.php');
 }
 
 // Handle Delete
@@ -34,7 +34,7 @@ if (isset($_GET['delete'])) {
     $del = $is_super ? "DELETE FROM pendapatan_parkir WHERE id=$id" : "DELETE FROM pendapatan_parkir WHERE id=$id AND cabang_id=$cabang_id";
     mysqli_query($conn, $del);
     set_flash_message('success', 'Data Parkir dihapus.');
-    redirect('/pjr_parking/modules/pemasukan/parkir.php');
+    redirect('/modules/pemasukan/parkir.php');
 }
 
 $where_p = $is_super ? "1=1" : "cabang_id = $cabang_id";

@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_cabang'])) {
     $stmt->bind_param("ss", $nama_cabang, $alamat);
     if($stmt->execute()) set_flash_message('success', 'Cabang baru berhasil ditambahkan.');
     else set_flash_message('error', 'Gagal menambahkan data cabang!');
-    redirect('/pjr_parking/modules/cabang/index.php');
+    redirect('/modules/cabang/index.php');
 }
 
 // Handle Delete
@@ -35,7 +35,7 @@ if (isset($_GET['delete'])) {
         }
     }
     
-    redirect('/pjr_parking/modules/cabang/index.php');
+    redirect('/modules/cabang/index.php');
 }
 
 $query = mysqli_query($conn, "

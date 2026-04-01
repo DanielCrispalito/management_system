@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_user'])) {
         if(mysqli_query($conn, $q)) set_flash_message('success', 'Akun pengguna berhasil dibuat.');
         else set_flash_message('error', 'Gagal membuat akun: ' . mysqli_error($conn));
     }
-    redirect('/pjr_parking/modules/users/index.php');
+    redirect('/modules/users/index.php');
 }
 
 // Handle Delete User
@@ -37,7 +37,7 @@ if (isset($_GET['delete'])) {
         if($delete) set_flash_message('success', 'Akun otomatis dihapus.');
         else set_flash_message('error', 'Gagal menghapus akun.');
     }
-    redirect('/pjr_parking/modules/users/index.php');
+    redirect('/modules/users/index.php');
 }
 
 $query = mysqli_query($conn, "

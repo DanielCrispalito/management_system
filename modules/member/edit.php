@@ -5,13 +5,13 @@ require_once __DIR__ . '/../../config/database.php';
 check_role(['Admin', 'Bendahara']);
 
 if (!isset($_GET['id'])) {
-    redirect('/pjr_parking/modules/member/index.php');
+    redirect('/modules/member/index.php');
 }
 
 $id = (int)$_GET['id'];
 $query = mysqli_query($conn, "SELECT * FROM member WHERE id = $id");
 if (mysqli_num_rows($query) == 0) {
-    redirect('/pjr_parking/modules/member/index.php');
+    redirect('/modules/member/index.php');
 }
 $member = mysqli_fetch_assoc($query);
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if($stmt->execute()) {
         set_flash_message('success', 'Data Member berhasil diupdate.');
-        redirect('/pjr_parking/modules/member/index.php');
+        redirect('/modules/member/index.php');
     } else {
         $error = "Terjadi kesalahan: " . mysqli_error($conn);
     }
@@ -43,7 +43,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Edit Data Member</h4>
-    <a href="/pjr_parking/modules/member/index.php" class="btn btn-secondary shadow-sm">
+    <a href="/modules/member/index.php" class="btn btn-secondary shadow-sm">
         <i class="fas fa-arrow-left me-1"></i> Kembali
     </a>
 </div>

@@ -47,13 +47,13 @@ function sanitize($conn, $string) {
 
 function check_role($allowed_roles) {
     if (!isset($_SESSION['user'])) {
-        redirect('/pjr_parking/login.php');
+        redirect('/login.php');
     }
     
     $user_role = $_SESSION['user']['role'];
     if (!in_array($user_role, $allowed_roles) && $user_role !== 'Admin' && $user_role !== 'Super Admin') {
         set_flash_message('error', 'Anda tidak memiliki akses ke halaman tersebut.');
-        redirect('/pjr_parking/index.php');
+        redirect('/index.php');
     }
 }
 ?>

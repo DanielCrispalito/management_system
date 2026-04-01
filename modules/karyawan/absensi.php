@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
         set_flash_message('success', "Data absensi bulan $bulan tahun $tahun berhasil disimpan.");
-        redirect("/pjr_parking/modules/karyawan/absensi.php?bulan=$bulan&tahun=$tahun");
+        redirect("/modules/karyawan/absensi.php?bulan=$bulan&tahun=$tahun");
     }
 }
 

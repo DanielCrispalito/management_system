@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_ruko'])) {
     $stmt->bind_param("isdi", $cabang_id, $nama_ruko, $nominal, $jatuh_tempo);
     if($stmt->execute()) set_flash_message('success', 'Data Ruko ditambahkan.');
     else set_flash_message('error', 'Gagal menambahkan Data.');
-    redirect('/pjr_parking/modules/ruko/index.php');
+    redirect('/modules/ruko/index.php');
 }
 
 // Handle Toggle Status
@@ -27,7 +27,7 @@ if (isset($_GET['toggle_status']) && isset($_GET['to'])) {
     $up_q = $is_super ? "UPDATE ruko SET status='$to' WHERE id=$id" : "UPDATE ruko SET status='$to' WHERE id=$id AND cabang_id=$cabang_id";
     mysqli_query($conn, $up_q);
     set_flash_message('success', 'Status ruko direkam menjadi ' . $to . '.');
-    redirect('/pjr_parking/modules/ruko/index.php');
+    redirect('/modules/ruko/index.php');
 }
 
 // Handle Delete Permanen
@@ -36,7 +36,7 @@ if (isset($_GET['delete'])) {
     $del = $is_super ? "DELETE FROM ruko WHERE id=$id" : "DELETE FROM ruko WHERE id=$id AND cabang_id=$cabang_id";
     mysqli_query($conn, $del);
     set_flash_message('success', 'Data ruko dihapus permanen.');
-    redirect('/pjr_parking/modules/ruko/index.php');
+    redirect('/modules/ruko/index.php');
 }
 
 $where_r = $is_super ? "1=1" : "cabang_id = $cabang_id";

@@ -20,7 +20,7 @@ if (isset($_GET['delete'])) {
     } else {
         set_flash_message('error', 'Gagal menghapus data.');
     }
-    redirect('/pjr_parking/modules/karyawan/index.php');
+    redirect('/modules/karyawan/index.php');
 }
 
 $where_k_sel = $is_super ? "1=1" : "cabang_id = $cabang_id";
@@ -30,7 +30,7 @@ $result = mysqli_query($conn, $query);
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Manajemen Karyawan</h4>
-    <a href="/pjr_parking/modules/karyawan/create.php" class="btn btn-primary shadow-sm"><i class="fas fa-plus"></i> Tambah Karyawan</a>
+    <a href="/modules/karyawan/create.php" class="btn btn-primary shadow-sm"><i class="fas fa-plus"></i> Tambah Karyawan</a>
 </div>
 
 <?php display_flash_message(); ?>
@@ -81,8 +81,8 @@ $result = mysqli_query($conn, $query);
                                     <?php endif; ?>
                                 </td>
                                 <td class="align-middle">
-                                    <a href="/pjr_parking/modules/karyawan/edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-info text-white me-1"><i class="fas fa-edit"></i></a>
-                                    <a href="/pjr_parking/modules/karyawan/index.php?delete=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></a>
+                                    <a href="/modules/karyawan/edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-info text-white me-1"><i class="fas fa-edit"></i></a>
+                                    <a href="/modules/karyawan/index.php?delete=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="fas fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>

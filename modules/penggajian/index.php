@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['generate_payroll'])) 
     } else {
         set_flash_message('warning', "Semua karyawan aktif di cabang Anda sudah digenerate gajinya bulan ini, atau tidak ada karyawan aktif.");
     }
-    redirect("/pjr_parking/modules/penggajian/index.php?bulan=$bulan&tahun=$tahun");
+    redirect("/modules/penggajian/index.php?bulan=$bulan&tahun=$tahun");
 }
 
 // Regenerate single employee action
@@ -189,7 +189,7 @@ if (isset($_GET['regenerate'])) {
             set_flash_message('success', 'Gaji berhasil di-Update Ulang dengan master data/absensi/kasbon terbaru.');
         }
     }
-    redirect("/pjr_parking/modules/penggajian/index.php?bulan=$bulan&tahun=$tahun");
+    redirect("/modules/penggajian/index.php?bulan=$bulan&tahun=$tahun");
 }
 
 // Delete / Batalkan Gaji Action
@@ -225,7 +225,7 @@ if (isset($_GET['delete'])) {
         
         set_flash_message('success', "Data Penggajian berhasil dibatalkan dan dihapus dari pembukuan kas. Status Potongan Kasbon/Pinjaman terkait telah di-revert lunas dengan sempurna.");
     }
-    redirect("/pjr_parking/modules/penggajian/index.php?bulan=$bulan&tahun=$tahun");
+    redirect("/modules/penggajian/index.php?bulan=$bulan&tahun=$tahun");
 }
 
 // Fetch Payroll Data
@@ -318,7 +318,7 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
                         <td class="text-end fw-bold text-success fs-6 align-middle border-success"><?= format_rupiah($g['total_gaji_bersih']) ?></td>
                         <td class="text-center small text-muted align-middle"><?= date('d/m/Y', strtotime($g['tanggal_cair'])) ?></td>
                         <td class="text-center align-middle">
-                            <a href="/pjr_parking/modules/penggajian/slip_gaji.php?id=<?= $g['id'] ?>" target="_blank" class="btn btn-sm btn-outline-dark mb-1" title="Cetak Slip"><i class="fas fa-print"></i></a>
+                            <a href="/modules/penggajian/slip_gaji.php?id=<?= $g['id'] ?>" target="_blank" class="btn btn-sm btn-outline-dark mb-1" title="Cetak Slip"><i class="fas fa-print"></i></a>
                             <a href="?regenerate=<?= $g['id'] ?>&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>" class="btn btn-sm btn-outline-info mb-1" onclick="return confirm('Update Ulang gaji ini dengan nominal master dan absensi terbaru?')" title="Update Ulang Master Gaji"><i class="fas fa-sync-alt"></i></a>
                             <br>
                             <a href="?delete=<?= $g['id'] ?>&bulan=<?= $bulan ?>&tahun=<?= $tahun ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin ingin membatalkan dan menghapus data gaji ini? Data pengeluaran terkait juga akan ditarik mundur.')" title="Batalkan Gaji"><i class="fas fa-trash"></i></a>

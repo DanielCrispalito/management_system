@@ -16,7 +16,7 @@ if (isset($_GET['toggle_status']) && isset($_GET['to'])) {
     $up_q = $is_super ? "UPDATE member SET status='$to' WHERE id=$id" : "UPDATE member SET status='$to' WHERE id=$id AND cabang_id=$cabang_id";
     mysqli_query($conn, $up_q);
     set_flash_message('success', 'Status member direkam menjadi ' . $to . '.');
-    redirect('/pjr_parking/modules/member/index.php');
+    redirect('/modules/member/index.php');
 }
 
 // Handle Delete (Permanent)
@@ -25,7 +25,7 @@ if (isset($_GET['delete'])) {
     $del_q = $is_super ? "DELETE FROM member WHERE id = $id" : "DELETE FROM member WHERE id = $id AND cabang_id = $cabang_id";
     mysqli_query($conn, $del_q);
     set_flash_message('success', 'Data member dihapus permanen dari sistem.');
-    redirect('/pjr_parking/modules/member/index.php');
+    redirect('/modules/member/index.php');
 }
 
 $where_m = $is_super ? "1=1" : "m.cabang_id = $cabang_id";
@@ -40,7 +40,7 @@ $result = mysqli_query($conn, $query);
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h4 class="page-title mb-0">Manajemen Member</h4>
-    <a href="/pjr_parking/modules/member/create.php" class="btn btn-primary shadow-sm"><i class="fas fa-plus"></i> Tambah Member</a>
+    <a href="/modules/member/create.php" class="btn btn-primary shadow-sm"><i class="fas fa-plus"></i> Tambah Member</a>
 </div>
 
 <?php display_flash_message(); ?>
@@ -99,10 +99,10 @@ $result = mysqli_query($conn, $query);
                                     <?php else: ?>
                                         <a href="?toggle_status=<?= $row['id'] ?>&to=Aktif" class="btn btn-sm btn-success shadow-sm" title="Aktifkan Kembali" onclick="return confirm('Aktifkan kembali member ini?')"><i class="fas fa-user-check"></i></a>
                                     <?php endif; ?>
-                                    <a href="/pjr_parking/modules/member/detail.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-primary shadow-sm" title="Kelola Personil"><i class="fas fa-users"></i></a>
-                                    <a href="/pjr_parking/modules/member/edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-info text-white shadow-sm" title="Edit Data"><i class="fas fa-edit"></i></a>
+                                    <a href="/modules/member/detail.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-primary shadow-sm" title="Kelola Personil"><i class="fas fa-users"></i></a>
+                                    <a href="/modules/member/edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-info text-white shadow-sm" title="Edit Data"><i class="fas fa-edit"></i></a>
                                     <?php if($is_super): ?>
-                                    <a href="/pjr_parking/modules/member/index.php?delete=<?= $row['id'] ?>" class="btn btn-sm btn-danger shadow-sm" title="Hapus Permanen" onclick="return confirm('HAPUS PERMANEN? Perhatian: Semua detail personil dan histori pembayarannya akan ikut terhapus dari sistem!')"><i class="fas fa-trash"></i></a>
+                                    <a href="/modules/member/index.php?delete=<?= $row['id'] ?>" class="btn btn-sm btn-danger shadow-sm" title="Hapus Permanen" onclick="return confirm('HAPUS PERMANEN? Perhatian: Semua detail personil dan histori pembayarannya akan ikut terhapus dari sistem!')"><i class="fas fa-trash"></i></a>
                                     <?php endif; ?>
                                 </td>
                             </tr>
