@@ -1,7 +1,7 @@
 FROM php:8.2-apache
 
-# FIX konflik MPM
-RUN a2dismod mpm_event \
+# FIX konflik MPM (Pastikan hanya satu yang aktif)
+RUN rm -f /etc/apache2/mods-enabled/mpm_*.load \
  && a2enmod mpm_prefork
 
 COPY . /var/www/html/
