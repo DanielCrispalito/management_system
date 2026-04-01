@@ -105,11 +105,11 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
                                     <td class="text-center"><?= $no++ ?></td>
                                     <td>
                                         <div class="fw-bold text-primary"><?= htmlspecialchars($row['nama']) ?></div>
-                                        <small class="text-muted"><?= htmlspecialchars($row['nik']) ?></small>
+                                        <small class="text-muted"><?= htmlspecialchars($row['nik'] ?? '') ?></small>
                                     </td>
                                     <td class="text-center">
-                                        <div class="small fw-semibold"><?= htmlspecialchars($row['jabatan']) ?></div>
-                                        <span class="badge bg-secondary" style="font-size: 0.70em;"><?= htmlspecialchars($row['divisi']) ?></span>
+                                        <div class="small fw-semibold"><?= htmlspecialchars($row['jabatan'] ?? '') ?></div>
+                                        <span class="badge bg-secondary" style="font-size: 0.70em;"><?= htmlspecialchars($row['divisi'] ?? '') ?></span>
                                     </td>
                                     <td>
                                         <input type="number" name="absensi[<?= $row['id'] ?>][hadir]" class="form-control form-control-sm text-center fw-bold text-success border-success" min="0" max="31" value="<?= $row['hadir'] ?? 0 ?>">
