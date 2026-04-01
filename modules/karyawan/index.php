@@ -60,18 +60,18 @@ $result = mysqli_query($conn, $query);
                             <tr>
                                 <td class="text-center align-middle"><?= $no++ ?></td>
                                 <td class="align-middle"><span class="badge bg-dark">KRY-<?= sprintf('%03d', $row['id']) ?></span></td>
-                                <td class="align-middle"><span class="fw-bold text-primary"><?= htmlspecialchars($row['nik']) ?></span></td>
+                                <td class="align-middle"><span class="fw-bold text-primary"><?= htmlspecialchars($row['nik'] ?? '') ?: '-' ?></span></td>
                                 <td class="align-middle">
                                     <div class="fw-bold fs-6"><?= htmlspecialchars($row['nama']) ?></div>
-                                    <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> <?= htmlspecialchars($row['alamat']) ?: '-' ?></small>
+                                    <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i> <?= htmlspecialchars($row['alamat'] ?? '') ?: '-' ?></small>
                                 </td>
                                 <td class="align-middle">
                                     <div class="fw-semibold text-dark"><?= htmlspecialchars($row['jabatan']) ?></div>
                                     <span class="badge bg-light border text-dark mt-1"><?= htmlspecialchars($row['divisi']) ?></span>
                                 </td>
                                 <td class="align-middle">
-                                    <div class="small"><i class="fas fa-phone-alt text-muted me-1"></i> <?= htmlspecialchars($row['no_hp']) ?: '-' ?></div>
-                                    <div class="small"><i class="fas fa-envelope text-muted me-1"></i> <?= htmlspecialchars($row['email']) ?: '-' ?></div>
+                                    <div class="small"><i class="fas fa-phone-alt text-muted me-1"></i> <?= htmlspecialchars($row['no_hp'] ?? '') ?: '-' ?></div>
+                                    <div class="small"><i class="fas fa-envelope text-muted me-1"></i> <?= htmlspecialchars($row['email'] ?? '') ?: '-' ?></div>
                                 </td>
                                 <td class="align-middle">
                                     <?php if ($row['status'] == 'Aktif'): ?>
