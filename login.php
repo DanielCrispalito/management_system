@@ -23,8 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
-        $c_n = mysqli_query($conn, "SELECT nama_cabang FROM cabang WHERE id = {$user['cabang_id']}");
-        $nama_cabang = ($c_n && mysqli_num_rows($c_n) > 0) ? mysqli_fetch_assoc($c_n)['nama_cabang'] : 'Cabang Utama';
+        $nama_cabang = 'Akses Lintas Cabang';
+        if (!empty($user['cabang_id'])) {
+            $c_n = mysqli_query($conn, "SELECT nama_cabang FROM cabang WHERE id = {$user['cabang_id']}");
+            if ($c_n && mysqli_num_rows($c_n) > 0) {
+                $nama_cabang = mysqli_fetch_assoc($c_n)['nama_cabang'];
+            }
+        }
 
         $_SESSION['user'] = [
             'id' => $user['id'],
