@@ -1,17 +1,17 @@
 <!-- <?php
-// $host = "localhost";
-// $username = "root";
-// $password = "";
-// $database = "pjr_parking";
-// $port = "3307";
+        // $host = "localhost";
+        // $username = "root";
+        // $password = "";
+        // $database = "pjr_parking";
+        // $port = "3307";
 
-// // Connect using MySQLi Since requested Procedural
-// $conn = mysqli_connect($host, $username, $password, $database, $port);
+        // // Connect using MySQLi Since requested Procedural
+        // $conn = mysqli_connect($host, $username, $password, $database, $port);
 
-// if (!$conn) {
-//     die("Connection failed: " . mysqli_connect_error());
-// }
-?> -->
+        // if (!$conn) {
+        //     die("Connection failed: " . mysqli_connect_error());
+        // }
+        ?> -->
 
 <?php
 $host = getenv('DB_HOST');

@@ -333,5 +333,8 @@ CREATE TABLE `users` (
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`cabang_id`) REFERENCES `cabang` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `cabang` (`id`, `nama_cabang`, `alamat`) VALUES (1, 'Cabang Utama', 'Pusat Operasional');
+INSERT INTO `users` (`id`, `nama`, `username`, `password`, `role`, `cabang_id`) VALUES (1, 'Administrator', 'admin', MD5('admin123'), 'Super Admin', 1);
+
 SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;

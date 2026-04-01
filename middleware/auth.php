@@ -9,7 +9,7 @@ require_once __DIR__ . '/../helpers/functions.php';
 if (!isset($_SESSION['user'])) {
     $current_url = $_SERVER['PHP_SELF'];
     if (strpos($current_url, 'login.php') === false) {
-        header('Location: /pjr_parking/login.php');
+        header('Location: /login.php');
         exit;
     }
 }

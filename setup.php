@@ -44,4 +44,3 @@ if (mysqli_multi_query($conn, $sql_contents)) {
 }
 
 mysqli_close($conn);
-?>
