@@ -112,21 +112,21 @@ require_once __DIR__ . '/../../layouts/sidebar.php';
             <div class="row mb-3">
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Gaji Pokok (Rp)</label>
-                    <input type="number" name="gaji_pokok" class="form-control" min="0" step="5000" value="0">
+                    <input type="number" name="gaji_pokok" class="form-control" min="0" step="any" value="0">
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Tunjangan Jabatan (Rp)</label>
-                    <input type="number" name="tunjangan_jabatan" class="form-control" min="0" step="5000" value="0">
+                    <input type="number" name="tunjangan_jabatan" class="form-control" min="0" step="any" value="0">
                 </div>
             </div>
             <div class="row mb-4">
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Tunjangan Makan (Rp) / Bulan</label>
-                    <input type="number" name="tunjangan_makan" class="form-control" min="0" step="5000" value="0">
+                    <input type="number" name="tunjangan_makan" class="form-control" min="0" step="any" value="0">
                 </div>
                 <div class="col-md-6">
                     <label class="form-label fw-bold">Tunjangan Transport (Rp) / Bulan</label>
-                    <input type="number" name="tunjangan_transport" class="form-control" min="0" step="5000" value="0">
+                    <input type="number" name="tunjangan_transport" class="form-control" min="0" step="any" value="0">
                 </div>
             </div>
             <div class="text-end">

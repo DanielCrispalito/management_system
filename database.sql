@@ -32,7 +32,7 @@ CREATE TABLE `cabang` (
 DROP TABLE IF EXISTS `karyawan`;
 CREATE TABLE `karyawan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nik` varchar(50) NOT NULL,
+  `nik` varchar(50) DEFAULT NULL,
   `nama` varchar(100) NOT NULL,
   `divisi` varchar(50) DEFAULT NULL,
   `jabatan` varchar(50) DEFAULT NULL,
