@@ -214,7 +214,6 @@ DROP TABLE IF EXISTS `pendapatan_parkir`;
 CREATE TABLE `pendapatan_parkir` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tanggal` date NOT NULL,
-  `shift` int(11) NOT NULL,
   `qris` decimal(10,2) DEFAULT 0.00,
   `non_tunai` decimal(10,2) DEFAULT 0.00,
   `tunai` decimal(10,2) DEFAULT 0.00,
@@ -324,7 +323,7 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` enum('Super Admin','Admin','Bendahara','HRD') NOT NULL,
-  `cabang_id` int(11) NOT NULL,
+  `cabang_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `akses_cabang` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
