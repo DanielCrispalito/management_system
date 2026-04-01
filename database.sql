@@ -89,7 +89,7 @@ DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(100) NOT NULL,
-  `jenis_member` enum('Instansi','Perorangan') NOT NULL,
+  `jenis_member` enum('Perusahaan','Individual') NOT NULL,
   `tipe_pembayaran` enum('Kolektif','Individual') NOT NULL,
   `nominal_iuran` decimal(10,2) NOT NULL,
   `tanggal_jatuh_tempo` int(11) NOT NULL,
